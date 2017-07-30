@@ -1,0 +1,102 @@
+<button type="button" class="btn btn-default" (click)="isBool =! isBool" >Toggle</button>
+<h4 *ngIf="isBool">
+    {{ message }}
+</h4>
+<hr>
+<h3>Ex : Form</h3>
+<hr>
+<div class="container">
+<form class="form-inline text-left">
+  <div class="col-md-12 form-group">
+    <label for="email">Email address:</label>
+    <input type="email" class="form-control" id="email">
+  </div>
+  <div class="col-md-12 form-group">
+    <label for="pwd">Password:</label>
+    <input type="password" class="form-control" id="pwd">
+  </div>
+  <div class="checkbox">
+    <label><input type="checkbox"> Remember me</label>
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+  <button type="button" class="btn btn-default" (click)="doClick()" >Click</button>
+</form>
+</div>
+
+
+
+
+<hr>
+<h3>Ex : Data Binding</h3>
+<hr>
+<div class="container text-left">
+Name : {{ infor.name }} <br>
+Address : {{ infor.address }} <br>
+Age : {{ infor.age }} <br>
+Sex : {{ infor.sex }} <br>
+<div>
+
+<hr>
+<h3>Ex : ngFor - Table</h3>
+<button (click)="getData()">getData</button>
+<hr>
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Index</th>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="listData">
+      <tr *ngFor="let value of listData; let i = index;let ft = first;let lt = last;let ev = even;let od = odd; trackBy: dataTrackByFn" [ngClass]="{'first':ft,'last':lt,'even': ev,'odd':od}">
+        <td>{{ i + 1 }}</td>
+        <td>{{value.firstname}}</td>
+        <td>{{value.lastname}}</td>
+        <td>{{value.email}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<hr>
+<h3>Ex : Switch - Change Tab</h3>
+<hr>
+<div>
+    <button (click)="changeTab(1)" class="btn" [ngClass]="['btn-default','btn-info']" [class.active]="tabIndex == 1">Tab 1</button>
+    <button (click)="changeTab(2)" class="btn" [ngClass]="{active : tabIndex == 2}">Tab 2</button>
+    <button (click)="changeTab(3)" class="btn" [class.active]="tabIndex == 3">Tab 3</button>
+</div>
+<div [ngSwitch]="tabIndex">
+    <template [ngSwitchCase]="1">
+        <div>Content Tab 1</div>
+    </template>
+    <template [ngSwitchCase]="2">
+        <div>Content Tab 2</div>
+    </template>
+    <template [ngSwitchCase]="3">
+        <div>Content Tab 3</div>
+    </template>
+</div>
+
+<hr>
+<h3>Ex : Built-in Directives</h3>
+<hr>
+<h4 [style.color]="'red'" [style.fontSize.px]="'30'">ngStyle</h4>
+
+<hr>
+<h3>Ex : ngStyle</h3>
+<hr>
+<h4 [ngStyle]="{color:'red',fontSize:'30px'}">ngStyle</h4>
+
+<hr>
+<h3>Ex : Event</h3>
+<hr>
+<input type="text" (change)="onInput($event)">
+<button (click)="onClick()">Send</button>
+<div>
+  <ul *ngIf="messages">
+    <li *ngFor="let mes of messages">{{mes}}</li>
+  </ul>
+</div>
